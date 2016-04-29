@@ -1,0 +1,156 @@
+<form name="GameForm">
+    <h2>[[ game.name ]]</h2>
+    <div>
+        <a href="#/" class="btn">&lt;-- Back</a>
+    </div>
+    <table class="tabs">
+        <tbody>
+            <tr class="variant-[[ game.variant ]]">
+                <th id="tabgamepage" class="tabgame" onclick="showTab('gamepage');">Game Area</th>
+                <th ng-repeat="seat in game.seats track by seat.id" id="tabseat[[ $index ]]" class="tabseat[[ $index ]]" ng-click="showTab('seat' + $index);">[[ seat.player.username ]]</th>
+                <th id="tabgamelog" class="tabgame" onclick="showTab('gamelog');">Game Log</th>
+                <th id="tabchatlog" class="tabgame" onclick="showTab('chatlog');">Chat Log</th>
+            </tr>
+        </tbody>
+    </table>
+    <table class="display">
+        <tr class="gamepage" id="gamepage">
+            <td>
+                <div>
+                    Round:&nbsp;<b>[[ game.round ]]</b>
+                    &nbsp;Age:&nbsp;<b>[[ game.age ]]</b>
+                    &nbsp;Phase:&nbsp;<b>[[ game.phase ]]</b>
+                    &nbsp;Turn:&nbsp;<b>[[ game.turn ]]</b>
+                    &nbsp;Active Player:&nbsp;<b>[[ game.seats[game.action_seat_index].player.username ]]</b>
+                    <table class="resourcewheel">
+                        <tr>
+                            <th colspan="7">Resource Production</th>
+                        </tr>
+                        <tr>
+                            <td>Wood: <b>[[ (game.gameboard.wheel - game.gameboard.wood + 13) % 13 ]]</b></td>
+                            <td>Peat: <b>[[ (game.gameboard.wheel - game.gameboard.peat + 13) % 13 ]]</b></td>
+                            <td>Grain: <b>[[ (game.gameboard.wheel - game.gameboard.grain + 13) % 13 ]]</b></td>
+                            <td>Livestock: <b>[[ (game.gameboard.wheel - game.gameboard.livestock + 13) % 13 ]]</b></td>
+                            <td>Clay: <b>[[ (game.gameboard.wheel - game.gameboard.clay + 13) % 13 ]]</b></td>
+                            <td>Coin: <b>[[ (game.gameboard.wheel - game.gameboard.coin + 13) % 13 ]]</b></td>
+                            <td>Joker: <b>[[ (game.gameboard.wheel - game.gameboard.joker + 13) % 13 ]]</b></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <span ng-if="game.gameboard.stone">Stone: <b>[[ (game.gameboard.wheel - game.gameboard.stone + 13) % 13 ]]</b></span>
+                                <span ng-if="game.round_stone_enters > 0">Stone in <b>[[ game.round_stone_enters - game.round ]]</b> rounds</span>
+                            </td>
+                            <td colspan="2">
+                                <span ng-if="game.gameboard.grapes">Grapes: <b>[[ (game.gameboard.wheel - game.gameboard.grapes + 13) % 13 ]]</b></span>
+                                <span ng-if="game.round_grapes_enter > 0">Grapes in <b>[[ game.round_grapes_enter - game.round  ]]</b> rounds</span>
+                            </td>
+                            <td colspan="3">
+                                Settlement in <ng-pluralize count="(game.gameboard.house - game.gameboard.wheel + 13) % 13"
+                                                            when="{'0': 'Now',
+                                                                   'one': '1 round',
+                                                                   'other': '{} rounds'
+                                                            }"></ng-pluralize>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <h3>Available Buildings</h3>
+                    <div class="buildings">
+                        <div ng-repeat="building in game.available_buildings | orderBy:'id.substring(1)' track by building.id" id="building[[ building.id ]]">
+                            <div class="[[ building.is_cloister ? 'cloister' : 'noncloister' ]]"><span class="card_name">[[ building.name ]][[ building.is_cloister ? ' &#9793;' : '' ]]</span><span class="card_id">[[ building.id ]]</span></div>
+                            <div class="body">
+                                <div>
+                                    Cost: <span ng-repeat="good in building.cost | orderBy:sortBuildingMaterials" class="good_[[ good.name ]]" title="[[ good.name.substring(0, 1).toUpperCase() + good.name.substring(1) ]]: [[ good.count ]]">[[ good.count ]][[ good.abbreviation ]]</span>
+                                </div>
+                                <div>
+                                    EV: <b>[[ building.economic_value ]]</b> DV: <b>[[ building.dwelling_value ]]</b> Age: <b>[[ building.age ]]</b>
+                                </div>
+                                <div>
+                                    Loc: <span ng-repeat="landscape in building.landscapes | orderBy:sortLandscapes" class="landscape" title="[[ landscape ]]">[[ landscape.substring(0, 1) ]]</span>
+                                </div>
+                                <div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr ng-repeat="seat in game.seats" class="seat[[ $index ]]" id="seat[[ $index ]]" style="display: none;" ng-init="$last && app.render_seats();">
+            <td>
+                <h2>[[ seat.player.username ]]</h2>
+                <table>
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <table class="resources">
+                                <thead>
+                                    <tr>
+                                        <th colspan="[[ game.variant == 'France' ? 11 : 10 ]]">Resources</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Clay: [[ seat.goods['clay'].count ]]</td>
+                                        <td>Wood: [[ seat.goods['wood'].count ]]</td>
+                                        <td>Peat: [[ seat.goods['peat'].count ]]</td>
+                                        <td>Livestock: [[ seat.goods['livestock'].count ]]</td>
+                                        <td>Grain: [[ seat.goods['grain'].count ]]</td>
+                                        <td>Coin: [[ seat.goods['coin'].count % 5 ]]</td>
+                                        <td>5 Coins: [[ seat.goods['coin'].count / 5 | number:0 ]]</td>
+                                        <td>Stone: [[ seat.goods['stone'].count ]]</td>
+                                        <td ng-if="seat.goods['malt']">Malt: [[ seat.goods['malt'].count ]]</td>
+                                        <td ng-if="seat.goods['grapes']">Grapes: [[ seat.goods['grapes'].count ]]</td>
+                                        <td ng-if="seat.goods['flour']">Flour: [[ seat.goods['flour'].count ]]</td>
+                                        <td rowspan="2">Wonder: [[ seat.goods['wonder'].count ]]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ceramic: [[ seat.goods['ceramic'].count ]]</td>
+                                        <td ng-if="seat.goods['whiskey']">Whiskey: [[ seat.goods['whiskey'].count ]]</td>
+                                        <td>Peat Coal: [[ seat.goods['peat-coal'].count ]]</td>
+                                        <td>Meat: [[ seat.goods['meat'].count ]]</td>
+                                        <td>Straw: [[ seat.goods['straw'].count ]]</td>
+                                        <td>Book: [[ seat.goods['book'].count ]]</td>
+                                        <td>Reliquary: [[ seat.goods['reliquary'].count ]]</td>
+                                        <td>Ornament: [[ seat.goods['ornament'].count ]]</td>
+                                        <td ng-if="seat.goods['beer']">Beer: [[ seat.goods['beer'].count ]]</td>
+                                        <td ng-if="seat.goods['wine']">Wine: [[ seat.goods['wine'].count ]]</td>
+                                        <td ng-if="seat.goods['bread']">Bread: [[ seat.goods['bread'].count ]]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <canvas seat_drawer id="board_[[ $index ]]" style="height: [[ 150 * (seat.landscape_grid.end - seat.landscape_grid.start) ]]px;">
+
+                </canvas>
+                <table class="board[[ $index ]]" id="board[[ $index ]]">
+                    <tr>
+                        <td class="plot">
+
+                        </td>
+                        <td class="district">
+
+                        </td>
+                        <td class="plot">
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="gamelog" id="gamelog">
+            <td>
+                <div class="div-table">
+                    <div ng-repeat="ledgerentry in game.ledger" class="div-table-row">
+                        <div ng-if="ledgerentry.executor_index !== undefined" class="div-table-cell">[[ game.seats[ledgerentry.executor_index].player.username ]]</div>
+                        <div ng-if="ledgerentry.executor_index === undefined" class="div-table-cell">&nbsp;</div>
+                        <div class="div-table-cell">[[ ledgerentry.text ]]</div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,9 @@
+<div>
+    <button ng-click="loadData()">Refresh</button>
+    <ul>
+        <li ng-repeat="question in questions">
+            <a ng-href="#/view/[[ question.id ]]">[[ question.question_text ]]</a>
+        </li>
+    </ul>
+    <div ng-hide="questions">No polls are available.</div>
+</div>

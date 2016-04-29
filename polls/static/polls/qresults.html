@@ -1,0 +1,13 @@
+<div>
+    <h2>Results for <span style="font-style: italic;">[[ question.question_text ]]</span></h2>
+    <button ng-click="loadData()">Refresh</button>
+    <div>
+        <a href="#/" class="btn">&lt;-- Back</a>
+    </div>
+    <ul class="polls-ul">
+        <li ng-repeat="choice in choices" class="group">
+            <span>[[ choice.choice_text ]]</span> &mdash; <small>([[ choice.votes / question.total_votes * 100 | number:0 ]]%, [[ choice.votes | number ]] votes)</small>
+            <div class="pollbar" style="width: [[ choice.votes / question.total_votes * 100 | number:0 ]]%;"></div>
+        </li>
+    </ul>
+</div>

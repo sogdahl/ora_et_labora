@@ -1,0 +1,276 @@
+li a {
+    color: lightblue;
+}
+
+body {
+}
+
+.btn {
+    display: inline-block;
+    padding: 4px 10px 4px;
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 18px;
+    color: #333333;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: linear-gradient(top, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+    border: 1px solid #cccccc;
+    border-bottom-color: #b3b3b3;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+button[disabled=disabled], button:disabled {
+    color: #ddd;
+}
+
+a {
+    color: #0088cc;
+    text-decoration: none;
+}
+
+.group {
+    clear: both;
+    margin: 0 0 5px 0;
+}
+.group:before, .group:after {
+    box-sizing: border-box;
+}
+.group:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
+table.tabs {
+    /*border-collapse: collapse;*/
+    border-spacing: 2px 0;
+}
+table.tabs th {
+    box-sizing: border-box;
+    width: 190px;
+    max-width: 190px;
+
+    padding: 4px 6px;
+    cursor: pointer;
+    border-width: 2px;
+    border-style: outset;
+    border-color: #777;
+}
+table.tabs th.tabgame {
+    background-color: #777;
+    color: #fff;
+}
+table.tabs th[class^='tabseat'], table.tabs th[class*=' tabseat'] {
+    box-sizing: border-box;
+    width: 190px;
+    max-width: 190px;
+}
+table.tabs th.tabseat0 {
+    background-color: #d44;
+    color: #fff;
+}
+table.tabs th.tabseat1 {
+    background-color: #4d4;
+    color: #fff;
+}
+table.tabs th.tabseat2 {
+    background-color: #44d;
+    color: #fff;
+}
+table.tabs th.tabseat3 {
+    background-color: #fff9e6;
+    color: #000;
+}
+table.tabs th.tabselected {
+    background-color: #eee;
+    color: #000;
+    #border-color: black;
+    border-style: inset;
+}
+
+table.display {
+    width: 95%;
+    border-collapse: collapse;
+}
+table.display tr.gamepage, table.display tr.gamelog, table.display tr.chatlog {
+    border: 3px solid #777;
+    background-color: #EEE;
+}
+table.display tr.seat0 {
+    border: 3px solid #d44;
+    background-color: #f5c5c5;
+}
+table.display tr.seat1 {
+    border: 3px solid #4d4;
+    background-color: #c5f5c5;
+}
+table.display tr.seat2 {
+    border: 3px solid #44d;
+    background-color: #c5c5f5;
+}
+table.display tr.seat3 {
+    border: 3px solid #777;
+    background-color: #fff9e6;
+}
+
+table.resourcewheel, table.resources {
+    border-collapse: collapse;
+    font-size: 0.8em;
+}
+table.resourcewheel thead, table.resources thead {
+    border: solid 1px black;
+}
+table.resourcewheel tbody, table.resources tbody {
+    border: solid 1px black;
+}
+table.resourcewheel td, table.resources td {
+    border: dotted 1px gray;
+    padding: 2px 4px;
+    vertical-align: top;
+}
+table.resourcewheel th, table.resources th {
+    border: dotted 1px gray;
+    background-color: #9999CC
+}
+table.resourcewheel tr:nth-child(odd), table.resources tr:nth-child(odd) {
+    background-color: #ddd;
+}
+table.resourcewheel tr:nth-child(even), table.resources tr:nth-child(even) {
+    background-color: #fff;
+}
+
+div.buildings {
+    border-collapse: collapse;
+    font-size: 0.8em;
+}
+div.buildings>div {
+    box-sizing: border-box;
+    width: 140px;
+    max-width: 140px;
+    float: left;
+    margin: 2px;
+    border: 2px solid black;
+}
+div.buildings div.cloister {
+    background-color: #EFD93F;
+    border-bottom: solid 1px gray;
+    padding: 0 6px;
+    vertical-align: top;
+}
+div.buildings div.noncloister {
+    background-color: #F8F7DC;
+    border-bottom: solid 1px gray;
+    padding: 0 6px;
+    vertical-align: top;
+}
+div.buildings span.card_name {
+    width: 100px;
+    height: 32px;
+    margin-right: 3px;
+    padding-top: 2px;
+    font-weight: bold;
+    display: inline-block;
+    border-right: 1px solid #444;
+}
+div.buildings span.card_id {
+    font-weight: normal;
+    padding-top: 4px;
+    vertical-align: top;
+    display: inline-block;
+}
+div.buildings div.body {
+    padding: 2px 4px;
+    background-color: #e9ffe9;
+}
+div.buildings td.Start {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image:url(age_start.png);
+}
+div.buildings .textright {
+    text-align: right;
+}
+div.buildings [class^="good_"] {
+    margin: 1px;
+    padding: 2px;
+    font-weight: bold;
+    border: solid 1px #444;
+    width: 18px;
+    display: inline-block;
+    text-align: right;
+    font-family: "courier new", monospace;
+}
+div.buildings .good_wood {
+    background-color: saddlebrown;
+    color: #eee;
+}
+div.buildings .good_clay {
+    background-color: red;
+    color: #eee;
+}
+div.buildings .good_stone {
+    background-color: black;
+    color: #eee;
+}
+div.buildings .good_straw {
+    background-color: yellow;
+    color: #111;
+}
+div.buildings .good_coin {
+    background-color: darkgrey;
+    color: #111;
+    width: 60px;
+    text-align: center;
+}
+
+.div-table{
+    display: table;
+    width: auto;
+}
+.div-table-row{
+    display: table-row;
+    width: auto;
+    clear: both;
+}
+.div-table-cell{
+    display: table-cell;
+    padding: 1px 5px;
+}
+
+[id^="board_"] {
+    border: solid 3px;
+    width: 855px;
+}
+#board_0 {
+    border-color: #d44;
+}
+#board_1 {
+    border-color: #4d4;
+}
+#board_2 {
+    border-color: #44d;
+}
+#board_3 {
+    border-color: #777;
+}

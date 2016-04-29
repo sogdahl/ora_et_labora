@@ -1,0 +1,14 @@
+<form name="QuestionVoteForm">
+    <h2>[[ question.question_text ]]</h2>
+    <button ng-click="loadChoices()">Refresh</button>
+    <div>
+        <a href="#/" class="btn">&lt;-- Back</a>
+    </div>
+    <fieldset>
+        <span ng-repeat="choice in choices">
+            <input type="radio" name="choice" id="choice[[ $index ]]" ng-value="[[ choice.id ]]" ng-model="$parent.selectedChoice" />
+            <label for="choice[[ $index ]]">[[ choice.choice_text ]]</label><br />
+        </span>
+    </fieldset>
+    <button ng-disabled="!selectedChoice" ng-click="vote()" class="btn">Vote</button>
+</form>

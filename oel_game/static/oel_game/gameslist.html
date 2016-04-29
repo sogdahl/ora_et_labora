@@ -1,0 +1,9 @@
+<div>
+    <button ng-click="loadData()">Refresh</button>
+    <ul>
+        <li ng-repeat="game in games">
+            <a ng-href="#/view/[[ game.id ]]">[[ game.name ]]</a>
+        </li>
+    </ul>
+    <div ng-hide="games">No games are available.</div>
+</div>

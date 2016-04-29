@@ -1,0 +1,16 @@
+<!doctype html>
+<html ng-app="oelGameApp">
+<head>
+{% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'oel_game/style.css' %}" />
+    <script src="{% static 'angular.min.js' %}"></script>
+    <script src="{% static 'angular-route.min.js' %}"></script>
+    <script src="{% static 'angular-resource.min.js' %}"></script>
+    <script src="{% static 'oel_game/oel_game.js' %}"></script>
+</head>
+<body>
+    <div ng-view>
+        <h2>Games</h2>
+    </div>
+</body>
+</html>
